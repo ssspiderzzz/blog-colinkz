@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS blogs CASCADE;
+
+CREATE TABLE blogs (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description VARCHAR(255),
+  email VARCHAR(255)
+);
