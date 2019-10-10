@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./NewBlog.css";
 
 export default function NewBlog(props) {
-  const [errorCheck, setErrorCheck] = useState(false);
-
   return (
     <React.Fragment>
-      {errorCheck && <div id="errorEmpty">Title could not be empty.</div>}
+      {props.error && <div id="errorEmpty">{props.error}</div>}
       <div id="NewBlog-Container">
         <form>
           <span>Title:</span>

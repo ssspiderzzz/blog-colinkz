@@ -12,6 +12,7 @@ export default function App(props) {
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
   const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios.get("/posts").then(res => {
@@ -23,6 +24,18 @@ export default function App(props) {
   }, []);
 
   function onSubmit() {
+    if (title === "") {
+      setError("Title cannot be empty!");
+    }
+    if (title.length > 255) {
+      setError("Title length should be less than 255 characters!");
+    }
+    if (!email.includes("@")) {
+      setError("Please enter a valid email address!");
+    }
+    if (description.length < 3 || description.length > 1000) {
+      setError("Description length should be 3 to 1000 characters!");
+    }
     axios
       .post("/posts/submit", {
         title: title,
@@ -31,6 +44,7 @@ export default function App(props) {
       })
       .then(() => {
         window.location.href = "/";
+        setError("");
         setShow(false);
       })
       .catch(err => console.log(err));
@@ -69,6 +83,7 @@ export default function App(props) {
         {show && blogs && <Blog state={blogs}></Blog>}
 
         <NewBlog
+          error={error}
           setTitle={setTitle}
           setEmail={setEmail}
           setDescription={setDescription}
