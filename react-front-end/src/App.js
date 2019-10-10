@@ -20,9 +20,17 @@ export default function App(props) {
   }
 
   return (
-    <div className="App">
-      <h1>{state.message}</h1>
-      <button onClick={fetchData}>Fetch Data</button>
-    </div>
+    <React.Fragment>
+      <div className="App">
+        <h1>Welcome to Co-Blog</h1>
+        <hr />
+        <h1>{state.message}</h1>
+        <header>
+          <button id="list">list</button>
+          <button id="add">add</button>
+        </header>
+        <button onClick={fetchData}>Fetch Data</button>
+      </div>
+    </React.Fragment>
   );
 }

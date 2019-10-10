@@ -7,7 +7,9 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 // Express Configuration
+App.use(morgan("dev"));
 App.use(BodyParser.urlencoded({ extended: false }));
+App.use(BodyParser.json());
 App.use(Express.static("public"));
 
 // Sample GET route
