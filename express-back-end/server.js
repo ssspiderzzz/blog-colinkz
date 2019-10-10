@@ -45,6 +45,16 @@ App.post("/posts/submit", (req, res) => {
       message: "Title length should be less than 255 characters!"
     });
   }
+  if (!req.body.email.includes("@")) {
+    res.json({
+      message: "Please enter a valid email address!"
+    });
+  }
+  if (req.body.description.length < 3 || req.body.description.length > 1000) {
+    res.json({
+      message: "Description length should be 3 to 1000 characters!"
+    });
+  }
   db.query(
     `
     INSERT INTO blogs (title, email, description)
