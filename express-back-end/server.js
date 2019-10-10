@@ -22,9 +22,8 @@ App.get("/api/data", (req, res) =>
 );
 
 App.get("/posts", (req, res) => {
-  console.log(JSON.stringify(req.body, null, 2));
   db.query(
-    `SELECT title, email, description
+    `SELECT id, title, email, description
     FROM blogs
     `
   ).then(data => {
