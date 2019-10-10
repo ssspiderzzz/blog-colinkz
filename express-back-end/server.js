@@ -6,6 +6,7 @@ const PORT = 8080;
 const { Pool } = require("pg");
 require("dotenv").config();
 
+const db = new Pool(dbParams);
 // Express Configuration
 App.use(morgan("dev"));
 App.use(BodyParser.urlencoded({ extended: false }));
@@ -20,6 +21,7 @@ App.get("/api/data", (req, res) =>
 );
 
 App.post("/posts/submit", (req, res) => {
+  console.log(JSON.stringify(req.body, null, 2));
   res.json({
     message: "Submit works!"
   });
@@ -29,7 +31,7 @@ App.get("/posts", (req, res) => {
   res.json({
     message: "Submit works!"
   });
-});)
+});
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console

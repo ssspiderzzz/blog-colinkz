@@ -14,18 +14,14 @@ export default function NewBlog(props) {
             name="title"
             id="inputTitle"
             placeholder="title"
-            onChange={event =>
-              props.setNewBlog({ ...props.newBlog, title: event.target.value })
-            }
+            onChange={event => props.setTitle(event.target.value)}
           ></input>
           <span>Email:</span>
           <input
             name="email"
             id="inputEmail"
             placeholder="email address"
-            onChange={event =>
-              props.setNewBlog({ ...props.newBlog, email: event.target.value })
-            }
+            onChange={event => props.setEmail(event.target.value)}
           ></input>
           <hr />
           <span>Description:</span>
@@ -33,12 +29,7 @@ export default function NewBlog(props) {
             name="des"
             id="inputDescription"
             placeholder="What are you humming about?"
-            onChange={event =>
-              props.setNewBlog({
-                ...props.newBlog,
-                description: event.target.value
-              })
-            }
+            onChange={event => props.setDescription(event.target.value)}
           ></input>
         </form>
 
