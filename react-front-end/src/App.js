@@ -18,7 +18,7 @@ export default function App(props) {
     axios.get("/posts").then(res => {
       console.log(res.data.blogs.rows);
       setBlogs({
-        blogs: _.sortBy(res.data.blogs.rows, "id")
+        blogs: _.sortBy(res.data.blogs.rows, ["id"], ["desc"]).reverse()
       });
     });
   }, []);
