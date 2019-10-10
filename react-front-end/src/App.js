@@ -1,23 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import NewBlog from "./components/NewBlog.js";
 
 export default function App(props) {
   const [state, setState] = useState("");
-
-  function fetchData() {
-    axios
-      .get("/api/data") // You can simply make your requests to "/api/whatever you want"
-      .then(response => {
-        // handle success
-        console.log(response.data); // The entire response from the Rails API
-
-        console.log(response.data.message); // Just the message
-        setState({
-          message: response.data.message
-        });
-      });
-  }
 
   return (
     <React.Fragment>
@@ -29,7 +16,7 @@ export default function App(props) {
           <button id="list">list</button>
           <button id="add">add</button>
         </header>
-        <button onClick={fetchData}>Fetch Data</button>
+        <NewBlog />
       </div>
     </React.Fragment>
   );
