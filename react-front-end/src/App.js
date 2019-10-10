@@ -4,7 +4,7 @@ import "./App.css";
 import NewBlog from "./components/NewBlog.js";
 
 export default function App(props) {
-  const [state, setState] = useState("");
+  const [blogs, setBlogs] = useState("");
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
@@ -27,13 +27,10 @@ export default function App(props) {
       <div className="App">
         <h1>Welcome to Co-Blog</h1>
         <hr />
-        <h1>{title}</h1>
-        <h1>{email}</h1>
-        <h1>{description}</h1>
         <header>
-          <button id="list">list</button>
+          <button id="list">List</button>
           <button id="add" onClick={() => onSubmit()}>
-            add
+            Add
           </button>
         </header>
         <NewBlog

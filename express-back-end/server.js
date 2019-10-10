@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const PORT = 8080;
 const { Pool } = require("pg");
 require("dotenv").config();
+const dbParams = require("./db_config");
 
 const db = new Pool(dbParams);
 // Express Configuration
@@ -20,16 +21,31 @@ App.get("/api/data", (req, res) =>
   })
 );
 
-App.post("/posts/submit", (req, res) => {
+App.get("/posts", (req, res) => {
   console.log(JSON.stringify(req.body, null, 2));
-  res.json({
-    message: "Submit works!"
+  db.query(
+    `SELECT title, email, description
+    FROM blogs
+    `
+  ).then(data => {
+    res.json({
+      blogs: data
+    });
   });
 });
 
-App.get("/posts", (req, res) => {
-  res.json({
-    message: "Submit works!"
+App.post("/posts/submit", (req, res) => {
+  console.log(JSON.stringify(req.body, null, 2));
+  db.query(
+    `
+    INSERT INTO blogs (title, email, description)
+    VALUES ($1, $2, $3)
+    `,
+    [req.body.title, req.body.email, req.body.description]
+  ).then(() => {
+    res.json({
+      message: "New post submit."
+    });
   });
 });
 
