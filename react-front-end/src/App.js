@@ -12,7 +12,6 @@ export default function App(props) {
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
   const [show, setShow] = useState(false);
-  const [errorCheck, setErrorCheck] = useState("");
 
   useEffect(() => {
     axios.get("/posts").then(res => {
