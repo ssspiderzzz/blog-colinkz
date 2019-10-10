@@ -26,28 +26,26 @@ export default function App(props) {
   function onSubmit() {
     if (title === "") {
       setError("Title cannot be empty!");
-    }
-    if (title.length > 255) {
+    } else if (title.length > 255) {
       setError("Title length should be less than 255 characters!");
-    }
-    if (!email.includes("@")) {
+    } else if (!email.includes("@")) {
       setError("Please enter a valid email address!");
-    }
-    if (description.length < 3 || description.length > 1000) {
+    } else if (description.length < 3 || description.length > 1000) {
       setError("Description length should be 3 to 1000 characters!");
+    } else {
+      axios
+        .post("/posts/submit", {
+          title: title,
+          description: description,
+          email: email
+        })
+        .then(() => {
+          window.location.href = "/";
+          setError("");
+          setShow(false);
+        })
+        .catch(err => console.log(err));
     }
-    axios
-      .post("/posts/submit", {
-        title: title,
-        description: description,
-        email: email
-      })
-      .then(() => {
-        window.location.href = "/";
-        setError("");
-        setShow(false);
-      })
-      .catch(err => console.log(err));
   }
 
   function showBlogs() {

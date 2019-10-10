@@ -39,35 +39,36 @@ App.post("/posts/submit", (req, res) => {
     res.json({
       message: "Title cannot be empty!"
     });
-  }
-  if (req.body.title.length > 255) {
+  } else if (req.body.title.length > 255) {
     res.json({
       message: "Title length should be less than 255 characters!"
     });
-  }
-  if (!req.body.email.includes("@")) {
+  } else if (!req.body.email.includes("@")) {
     res.json({
       message: "Please enter a valid email address!"
     });
-  }
-  if (req.body.description.length < 3 || req.body.description.length > 1000) {
+  } else if (
+    req.body.description.length < 3 ||
+    req.body.description.length > 1000
+  ) {
     res.json({
       message: "Description length should be 3 to 1000 characters!"
     });
-  }
-  db.query(
-    `
+  } else {
+    db.query(
+      `
     INSERT INTO blogs (title, email, description)
     VALUES ($1, $2, $3)
     `,
-    [req.body.title, req.body.email, req.body.description]
-  )
-    .then(() => {
-      res.json({
-        message: "New post submit."
-      });
-    })
-    .catch(err => console.log(err));
+      [req.body.title, req.body.email, req.body.description]
+    )
+      .then(() => {
+        res.json({
+          message: "New post submit."
+        });
+      })
+      .catch(err => console.log(err));
+  }
 });
 
 App.listen(PORT, () => {

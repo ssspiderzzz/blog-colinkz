@@ -4,6 +4,7 @@ import "./NewBlog.css";
 export default function NewBlog(props) {
   return (
     <React.Fragment>
+      {console.log(props.error)}
       {props.error && <div id="errorEmpty">{props.error}</div>}
       <div id="NewBlog-Container">
         <form>
