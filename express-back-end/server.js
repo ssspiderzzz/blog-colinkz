@@ -25,6 +25,12 @@ App.post("/posts/submit", (req, res) => {
   });
 });
 
+App.get("/posts", (req, res) => {
+  res.json({
+    message: "Submit works!"
+  });
+});)
+
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(

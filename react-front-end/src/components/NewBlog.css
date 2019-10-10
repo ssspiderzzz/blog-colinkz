@@ -16,11 +16,13 @@
 #inputTitle {
   width: 50%;
   height: 30px;
+  margin: 5px;
   border: none;
 }
 #inputEmail {
   width: 40%;
   height: 30px;
+  margin: 5px;
   border: none;
 }
 
