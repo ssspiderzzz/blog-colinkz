@@ -1,4 +1,5 @@
-#NewBlog-Container {
+#Blog-Container {
+  text-align: left;
   position: relative;
   top: 55px;
   border: 5px;
@@ -12,22 +13,22 @@
   display: block;
 }
 
-#inputTitle {
+#spanTitle {
   width: 40%;
   height: 30px;
-  margin: 5px;
+  margin: 10px;
   border: none;
 }
-#inputEmail {
+#spanEmail {
   width: 30%;
   height: 30px;
-  margin: 5px;
+  margin: 10px;
   border: none;
 }
 
-#inputDescription {
+#spanDescription {
   width: 90%;
   height: 200px;
-  margin: 5px;
+  margin: 10px;
   border: none;
 }

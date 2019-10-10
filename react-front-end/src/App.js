@@ -11,6 +11,8 @@ export default function App(props) {
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
+  const [show, setShow] = useState(false);
+  const [errorCheck, setErrorCheck] = useState("");
 
   useEffect(() => {
     axios.get("/posts").then(res => {
@@ -30,8 +32,13 @@ export default function App(props) {
       })
       .then(() => {
         window.location.href = "/";
+        setShow(false);
       })
       .catch(err => console.log(err));
+  }
+
+  function showBlogs() {
+    setShow(true);
   }
 
   return (
@@ -40,8 +47,15 @@ export default function App(props) {
         <h1>Welcome to Co-Blog</h1>
         <hr />
         <Router>
-          <Link to={{ pathname: "/posts", blogs: blogs }}>
-            <span id="list">List</span>
+          <Link to="/">
+            <span id="add" onClick={() => setShow(false)}>
+              Home
+            </span>
+          </Link>
+          <Link to={{ pathname: "/posts" }}>
+            <span id="list" onClick={() => showBlogs()}>
+              List
+            </span>
           </Link>
           <Link to={{ pathname: "/posts/submit" }}>
             <span id="add" onClick={() => onSubmit()}>
@@ -49,9 +63,11 @@ export default function App(props) {
             </span>
           </Link>
           <hr />
-          <Route exact path="/posts" component={Blog} />
+          <Route exact path="/" />
+          <Route exact path="/posts" />
           <Route exact path="/posts/submit" />
         </Router>
+        {show && blogs && <Blog state={blogs}></Blog>}
 
         <NewBlog
           setTitle={setTitle}

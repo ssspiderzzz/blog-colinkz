@@ -35,17 +35,29 @@ App.get("/posts", (req, res) => {
 
 App.post("/posts/submit", (req, res) => {
   console.log(JSON.stringify(req.body, null, 2));
+  if (req.body.title === "") {
+    res.json({
+      message: "Title cannot be empty!"
+    });
+  }
+  if (req.body.title.length > 255) {
+    res.json({
+      message: "Title length should be less than 255 characters!"
+    });
+  }
   db.query(
     `
     INSERT INTO blogs (title, email, description)
     VALUES ($1, $2, $3)
     `,
     [req.body.title, req.body.email, req.body.description]
-  ).then(() => {
-    res.json({
-      message: "New post submit."
-    });
-  });
+  )
+    .then(() => {
+      res.json({
+        message: "New post submit."
+      });
+    })
+    .catch(err => console.log(err));
 });
 
 App.listen(PORT, () => {
