@@ -33,5 +33,7 @@
 }
 
 #errorEmpty {
+  position: relative;
+  top: 40px;
   color: red;
 }
