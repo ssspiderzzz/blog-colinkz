@@ -2,6 +2,10 @@
 
 This project is built based on react-front-end and express-back-end.
 
+## Bonus
+
+In express-back-end folder, type "npm run blogscript" will show the latest 5 posts.
+
 # Screenshots
 
 Users can add new blog posts on the home page. Button "Add" will submit the new post.
